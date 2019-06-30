@@ -10,7 +10,7 @@ app.post('/api/challenge', (req, res, next) => {
 	return res.status(200).send({ "challenge": req.body.challenge });
 });
 
-app.set('SERVER_PORT', process.env.SERVER_PORT || 3000);
+app.set('SERVER_PORT', process.env.PORT || 3000);
 app.listen(app.get('SERVER_PORT'), () => {
 	console.log(`[app] Server running on port ${app.get('SERVER_PORT')}`);
 });
