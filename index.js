@@ -1,13 +1,17 @@
 const app = require('express')();
 const bodyParser = require('body-parser');
+const path = require('path');
 
 app.use(bodyParser.json({ limit: '5mb' }));
 app.use(bodyParser.urlencoded({ limit: '5mb', extended: false }));
 
-app.post('/api/challenge', (req, res, next) => {
-	console.log(`Recieved a request at /api/challenge`);
-	console.log(JSON.stringify(req.body));
+app.post('/api/events', (req, res, next) => {
 	return res.status(200).send({ "challenge": req.body.challenge });
+});
+
+app.get('/', (req, res, next) => {
+	app.use(app.static(path.join(__dirname, 'public')));
+	res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.set('SERVER_PORT', process.env.PORT || 3000);
