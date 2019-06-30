@@ -1,4 +1,5 @@
-const app = require('express')();
+const express = require('express');
+const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
 
@@ -10,7 +11,7 @@ app.post('/api/events', (req, res, next) => {
 });
 
 app.get('/', (req, res, next) => {
-	app.use(app.static(path.join(__dirname, 'public')));
+	app.use(express.static(path.join(__dirname, 'public')));
 	res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
