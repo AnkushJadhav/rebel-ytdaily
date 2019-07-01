@@ -12,7 +12,7 @@ app.post('/api/events', (req, res, next) => {
 	return res.status(200).send({ "challenge": req.body.challenge });
 });
 
-app.get('/', (req, res, next) => {
+app.get('/', async (req, res, next) => {
 	if (req.query.code) {
 		const result = await(new WebClient()).oauth.access({
 			client_id: process.env.CLIENT_ID,
